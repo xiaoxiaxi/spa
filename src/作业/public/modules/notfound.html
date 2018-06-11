@@ -1,0 +1,30 @@
+<div class="text-center">
+  <div class="ib-box">
+    <h1 class="text-left">404</h1>
+    <h3 class="text-left">Not Found</h3>
+  </div>
+</div>
+<script>
+var el = document.querySelector('.ib-box');
+var colorChange = function() {
+  el.style.color = 'rgb(' +
+    parseInt(Math.random() * 255) +
+    ',' + parseInt(Math.random() * 255) +
+    ',' + parseInt(Math.random() * 255) + ')';
+  setTimeout(colorChange, 500);
+};
+setTimeout(colorChange, 500);
+</script>
+<style>
+.ib-box {
+  display: inline-block;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+</style>

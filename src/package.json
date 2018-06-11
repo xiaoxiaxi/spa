@@ -1,0 +1,15 @@
+{
+  "name": "spa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server --inline --hot --content-base build"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}

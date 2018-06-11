@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>SPA</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  body {
+    background-color: #eee;
+  }
+
+  a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  .m-nav:before,
+  .m-nav:after,
+  .nav-container:before,
+  .nav-container:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  .m-nav {
+    padding: 20px 50px;
+    border-bottom: 1px solid #bbb;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+  }
+
+  .m-nav .nav-container {
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .m-nav .nav-container .item {
+    float: left;
+  }
+
+  .m-nav .nav-container .item:hover {
+    text-decoration: underline;
+  }
+
+  .m-nav .nav-container .item+.item {
+    margin-left: 40px;
+  }
+
+  .route-content {
+    text-align: center;
+    background: rgba(100, 100, 100, .1)
+  }
+  </style>
+</head>
+
+<body>
+  <nav class="m-nav">
+    <ul class="nav-container">
+      <li class="item"><a href="#/welcome">欢迎</a></li>
+      <li class="item"><a href="#/404">404</a></li>
+      <li class="item"><a href="#/a">/a</a></li>
+      <li class="item"><a href="#/b">/b</a></li>
+      <li class="item"><a href="#/a/c">/a/c</a></li>
+      <li class="item"><a href="#/a/d">/a/d</a></li>
+      <li class="item"><a href="#/a/d/e">/a/d/e</a></li>
+      <li class="item"><a href="#/a/d/e/f">/a/d/e/f</a></li>
+      <li class="item"><a href="#/a/d/e/g">/a/d/e/g</a></li>
+    </ul>
+  </nav>
+  <div class="route-content"></div>
+  <script src="dist/js/app.bundle.js"></script>
+  <!-- <script src="app.bundle.js"></script> -->
+</body>
+
+</html>

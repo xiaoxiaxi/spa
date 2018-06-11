@@ -2,9 +2,9 @@
 //   http://karma-runner.github.io/0.13/config/configuration-file.html
 // we are also using it with karma-webpack
 //   https://github.com/webpack/karma-webpack
-process.env.CHROME_BIN = require('puppeteer').executablePath()
+process.env.CHROME_BIN = require('puppeteer').executablePath();
 
-var webpackConfig = require('../../build/webpack.test.conf')
+var webpackConfig = require('../../build/webpack.test.conf');
 
 module.exports = function karmaConfig (config) {
   config.set({
@@ -30,5 +30,5 @@ module.exports = function karmaConfig (config) {
         { type: 'text-summary' }
       ]
     }
-  })
-}
+  });
+};

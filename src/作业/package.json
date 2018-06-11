@@ -1,0 +1,25 @@
+{
+  "name": "spa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server --inline --hot --content-base build"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-latest": "^6.24.1",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "express-static": "^1.2.5",
+    "jquery": "^3.3.1"
+  }
+}

@@ -4,7 +4,7 @@
  * @author   genify(caijf@corp.netease.com)
  */
 // private name
-const evtname = Symbol('events')
+const evtname = Symbol('events');
 
 // class definition
 export class Event {
@@ -12,14 +12,14 @@ export class Event {
      * Event Constructor
      */
   constructor (options = {}) {
-    this[evtname] = {}
+    this[evtname] = {};
     // auto add event for function config
     Object.keys(options).forEach((key) => {
-      let it = options[key]
+      let it = options[key];
       if (typeof it === 'function') {
-        this.on(key, it)
+        this.on(key, it);
       }
-    }, this)
+    }, this);
   }
 
   /**
@@ -28,13 +28,13 @@ export class Event {
      * @param {Function} listener - event listener
      */
   on (type, listener) {
-    let list = this[evtname][type]
+    let list = this[evtname][type];
     if (!list) {
-      list = []
-      this[evtname][type] = list
+      list = [];
+      this[evtname][type] = list;
     }
     if (typeof listener === 'function') {
-      list.push(listener)
+      list.push(listener);
     }
   }
 
@@ -44,13 +44,13 @@ export class Event {
      * @param {Function} listener - event listener
      */
   off (type, listener) {
-    let list = this[evtname][type]
+    let list = this[evtname][type];
     if (!list || !list.length) {
-      return
+      return;
     }
-    let index = list.indexOf(listener)
+    let index = list.indexOf(listener);
     if (index >= 0) {
-      list.splice(index, 1)
+      list.splice(index, 1);
     }
   }
 
@@ -60,11 +60,11 @@ export class Event {
      * @param {Variable} args - parameters for event
      */
   emit (type, ...args) {
-    let list = this[evtname][type]
+    let list = this[evtname][type];
     if (list && list.length > 0) {
       list.forEach((it) => {
-        it.apply(null, args)
-      })
+        it.apply(null, args);
+      });
     }
   }
 }
