@@ -1,4 +1,7 @@
 # spa
+<center>	
+[![Build Status](https://travis-ci.org/CoffeeWorm/spa.svg?branch=feature%2Fci)](https://travis-ci.org/CoffeeWorm/spa)  [![Coverage Status](https://coveralls.io/repos/github/CoffeeWorm/spa/badge.svg?branch==feature%2Fci)](https://coveralls.io/github/CoffeeWorm/spa?branch==feature%2Fci)
+</center>
 
 ## Build Setup
 
