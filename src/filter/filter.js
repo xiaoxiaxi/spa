@@ -1,4 +1,4 @@
-class Filter {
+export class Filter {
   
   constructor(context, next, chain) {
     this._context = context;
@@ -22,5 +22,3 @@ class Filter {
     //Overwrite by subclasses
   }
 }
-
-module.exports = Filter;

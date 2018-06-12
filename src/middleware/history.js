@@ -1,5 +1,4 @@
-function history() {
-  console.log('%c[history init]','color:blue;font-size:16px;');
+export function history() {
   var iframe = document.createElement('iframe');
   iframe.style.position = 'absolute';
   iframe.style.visibility = 'hidden';
@@ -38,11 +37,7 @@ function history() {
     }
   }
   return function(context, next) {
-    console.log('--------  history middleware  --------');
-    console.log(context);
     doPushHistory(context.request.hash);
-    console.log('--------end history middleware--------');
     next();
   };
 }
-module.exports = history;

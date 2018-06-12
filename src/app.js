@@ -1,24 +1,22 @@
-const rest = require('./middleware/rest');
-/*const history = require('./middleware/history');*/
-const rewrite = require('./middleware/rewrite');
-const filter = require('./middleware/filter');
-const router = require('./middleware/router');
-// const AuthFilter = require('./filter/auth');
-const Monitor = require('./monitor');
-const spa = require('./spa');
+import rest from './middleware/rest';
+import rewrite from './middleware/rewrite';
+import filter from './middleware/filter';
+import router from './middleware/router';
+import AuthFilter from './filter/auth';
+import Monitor from './monitor';
+import spa from './spa';
 
 let app = {
-  start: function(options) {
+  start: function (options) {
     //添加单页应用的中间件
     spa.add(rest(options));
-    // spa.add(history(options));
     spa.add(rewrite(options));
     spa.add(filter.mw);
-    // filter.add([AuthFilter]);
+    filter.add([AuthFilter]);
     spa.add(router(options));
     //url监控器
     new Monitor({
-      onchange: function(event) {
+      onchange: function (event) {
         let context = {
           request: new URL(event.newValue)
         };

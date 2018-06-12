@@ -1,4 +1,4 @@
-class Monitor {
+export class Monitor {
   constructor(option){
     option = option || {};
     let last = null;
@@ -23,5 +23,3 @@ class Monitor {
     clearInterval(this.interval);
   }
 }
-
-module.exports = Monitor;

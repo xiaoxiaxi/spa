@@ -1,7 +1,7 @@
 
 let mws = [];
 
-let spa = {
+export let spa = {
   add: function(mw) {
     if (typeof mw === 'function') {
       mws.push(mw);
@@ -18,5 +18,3 @@ let spa = {
     next();
   }
 };
-
-module.exports = spa;
