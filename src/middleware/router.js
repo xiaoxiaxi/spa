@@ -1,11 +1,11 @@
-const $ = require('jquery');
+const $ = require('../../vendor/jquery');
 
 function router(options) {
   console.log('%c[router init]', 'color:blue;font-size:16px;');
   let routes = options.routes || {};
   let current = null;
   let UMI = {
-    baseUrl: '/modules/',
+    baseUrl: '../../static/modules/',
     fileType: 'html',
     children: {},
     status: 'shown', //'built', 'shown', 'unloaded'
@@ -188,7 +188,6 @@ function router(options) {
       param: path,
       return: '/a/c'||'/a/c/' -> object c :{}, 
                           '/' -> undifined, 
-              没有的模块跳转到'/404'
     */
     findNode(path) {
       if (typeof path !== 'string' || path === '/') {

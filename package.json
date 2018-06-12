@@ -1,7 +1,7 @@
 {
   "name": "ci-test",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "A spa project",
   "author": "hzshaoyy <hzshaoyy@corp.netease.com>",
   "private": true,
   "scripts": {

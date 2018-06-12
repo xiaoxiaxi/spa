@@ -6,7 +6,7 @@ module.exports = {
     'parser': 'babel-eslint',
     'ecmaVersion': 6,
     'ecmaFeatures': {
-      impliedStrict: true
+      'impliedStrict': true
     },
     'sourceType': 'module'
   },
@@ -18,7 +18,7 @@ module.exports = {
   'extends': [
     // https://github.com/standard/standard/blob/master/docs/RULES-en.md
     // 'standard',
-    "eslint:recommended"
+    'eslint:recommended'
   ],
   // add your custom rules here
   'rules': {
