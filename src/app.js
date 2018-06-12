@@ -11,7 +11,7 @@ let app = {
   start: function(options) {
     //添加单页应用的中间件
     spa.add(rest(options));
-    spa.add(history(options));
+    // spa.add(history(options));
     spa.add(rewrite(options));
     spa.add(filter.mw);
     // filter.add([AuthFilter]);
