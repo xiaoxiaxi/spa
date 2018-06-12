@@ -1,4 +1,4 @@
-const Moniter = require('@/monitor');
+import Moniter from '@/monitor';
 
 describe('monitor test', function (done) {
   describe('#star', function () {
