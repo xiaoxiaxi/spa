@@ -11,14 +11,18 @@ export class Monitor {
         last = url;
         if (typeof option.onchange === 'function') {
           option.onchange(event);
+          return true;
         }
+        return false;
       }
     };
   }
   start() {
     this.interval = setInterval(this.runURLCheck, 500);
+    return true;
   }
   stop() {
     clearInterval(this.interval);
+    return true;
   }
 }

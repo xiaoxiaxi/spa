@@ -6,7 +6,7 @@ import { AuthFilter } from './filter/auth';
 import { Monitor } from './monitor';
 import { spa } from './spa';
 
-let app = {
+export let app = {
   start: function (options) {
     //添加单页应用的中间件
     spa.add(rest(options));

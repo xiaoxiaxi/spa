@@ -23,15 +23,34 @@ describe('UMI test', () => {
       expect(UMI.children.d.children.e).to.equal(UMI.findNode('/d/e'));
       done();
     });
-    it('findNode & finParent', (done)=>{
+    it('findNode & finParent', (done) => {
       expect(UMI.findNode('/b')).to.equal(UMI.findParent('/b/c'));
       expect(UMI.findNode('/d')).to.equal(UMI.findParent('/d/e'));
       expect(UMI.findNode('/')).to.equal(UMI.findParent('/d'));
       done();
     });
-    it('show', (done)=>{
-      // UMI.build('/d');
-      // UMI.show('/d');
+    it('build', (done) => {
+      UMI.build();
+      UMI.build('/d/e');
+      done();
+    });
+    it('show', (done) => {
+      UMI.show();
+      UMI.show('/d');
+      UMI.show('/d');
+      UMI.show('/d/e');
+      done();
+    });
+    it('jump', (done) => {
+      UMI.jump('/d', '/d/e');
+      UMI.jump('/d/e', '/d');
+      done();
+    });
+    it('pathParse', (done) => {
+      expect(UMI.pathParse('/d') + '').to.equal(['d'] + '');
+      expect(UMI.pathParse('/d/e') + '').to.equal(['d','e'] + '');
+      expect(UMI.pathParse('/') + '').to.equal([] + '');
+      expect(UMI.pathParse() + '').to.equal([] + '');
       done();
     });
   });

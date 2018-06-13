@@ -6,16 +6,16 @@ export class Filter {
   }
   chain() {
     if (this._chain) {
-      this._chain();
+      return this._chain();
     }
   }
   next() {
     if (this._next) {
-      this._next();
+      return this._next();
     }
   }
   diFilter() {
     //Overwrite by subclasses
+    return true;
   }
-  abc(){}
 }

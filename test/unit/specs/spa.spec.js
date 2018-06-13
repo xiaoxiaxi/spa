@@ -4,7 +4,7 @@ import { rest } from '@/middleware/rest';
 import { filter } from '@/middleware/filter';
 import { router } from '@/middleware/router';
 import { AuthFilter } from '@/filter/auth';
-import { Monitor } from '@/monitor';
+import { Filter } from '@/filter/filter';
 
 describe('spa test', () => {
   describe('spa add', () => {
@@ -16,7 +16,14 @@ describe('spa test', () => {
         rules: [{
           matcher: /\/user\/.+/i,
           target: '/user/'
-        }],
+        }, {
+          matcher: '/404/',
+          target: '/welcome/'
+        }, {
+          matcher: function () { return false; },
+          target: '/user/'
+        },
+        ],
         routes: {
           '/404': 'notfound',
           '/welcome': 'welcome',
@@ -32,15 +39,14 @@ describe('spa test', () => {
       spa.add(rest(options));
       spa.add(rewrite(options));
       spa.add(filter.mw);
-      filter.add([AuthFilter]);
+      expect(filter.add(AuthFilter).length).to.equal(2);
+      expect(filter.add([Filter]).length).to.equal(3);
       spa.add(router(options));
-      //url监控器
-      new Monitor({
-        onchange: function (event) {
-          let context = { request: new URL(event.newValue) };
-          spa.dispatch(context);
-        }
-      });
+      done();
+    });
+    it('should be ok to dispatch', (done) => {
+      let context = { request: new URL(location.href) };
+      spa.dispatch(context);
       done();
     });
   });

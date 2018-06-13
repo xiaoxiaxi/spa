@@ -1,32 +1,8 @@
-import { rewrite } from '@/middleware/rewrite';
-import { rest } from '@/middleware/rest';
-import { filter } from '@/middleware/filter';
+import { app } from '@/app';
 import { router } from '@/middleware/router';
-import { AuthFilter } from '@/filter/auth';
-import { Monitor } from '@/monitor';
-import { spa } from '@/spa';
 
 describe('whole system test', () => {
   it('should be ok when run system', (done) => {
-    let app = {
-      start: function (options) {
-        //添加单页应用的中间件
-        spa.add(rest(options));
-        spa.add(rewrite(options));
-        spa.add(filter.mw);
-        filter.add([AuthFilter]);
-        spa.add(router(options));
-        //url监控器
-        new Monitor({
-          onchange: function (event) {
-            let context = {
-              request: new URL(event.newValue)
-            };
-            spa.dispatch(context);
-          }
-        });
-      }
-    };
     let options = {
       matchers: [
         '/user/:id'
@@ -48,6 +24,10 @@ describe('whole system test', () => {
       }
     };
     app.start(options);
+    done();
+  });
+  it('router redirect', (done) => {
+    router.redirect('/404');
     done();
   });
 });

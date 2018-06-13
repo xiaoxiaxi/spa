@@ -9,6 +9,7 @@ export let filter = {
     } else {
       filters.push(ft);
     }
+    return filters;
   },
   //单页中间件
   mw: function (context, next) {
@@ -22,6 +23,5 @@ export let filter = {
         next();
       }
     };
-    chain();
   }
 };
