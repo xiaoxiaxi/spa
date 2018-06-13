@@ -1,10 +1,10 @@
-import rest from './middleware/rest';
-import rewrite from './middleware/rewrite';
-import filter from './middleware/filter';
-import router from './middleware/router';
-import AuthFilter from './filter/auth';
-import Monitor from './monitor';
-import spa from './spa';
+import { rewrite } from './middleware/rewrite';
+import { rest } from './middleware/rest';
+import { filter } from './middleware/filter';
+import { router } from './middleware/router';
+import { AuthFilter } from './filter/auth';
+import { Monitor } from './monitor';
+import { spa } from './spa';
 
 let app = {
   start: function (options) {
@@ -12,17 +12,19 @@ let app = {
     spa.add(rest(options));
     spa.add(rewrite(options));
     spa.add(filter.mw);
-    filter.add([AuthFilter]);
+    filter.add(AuthFilter);
     spa.add(router(options));
+
     //url监控器
-    new Monitor({
-      onchange: function (event) {
+    let mon = new Monitor({
+      onchange: (event) => {
         let context = {
           request: new URL(event.newValue)
         };
         spa.dispatch(context);
       }
     });
+    mon.start();
   }
 };
 let options = {

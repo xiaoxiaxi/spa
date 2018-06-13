@@ -1,8 +1,7 @@
 export class Monitor {
-  constructor(option){
-    option = option || {};
+  constructor(option = {}) {
     let last = null;
-    this.runURLCheck = ()=>{
+    this.runURLCheck = () => {
       let url = location.href;
       if (url !== last) {
         let event = {
@@ -16,10 +15,10 @@ export class Monitor {
       }
     };
   }
-  start(){
+  start() {
     this.interval = setInterval(this.runURLCheck, 500);
   }
-  stop(){
+  stop() {
     clearInterval(this.interval);
   }
 }

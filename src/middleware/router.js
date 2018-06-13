@@ -1,11 +1,11 @@
-import UMI from '../umi/umi';
+import { UMI } from '../umi/umi';
 
 export function router(options) {
   let routes = options.routes || {};
   let current = null;
   UMI.parse(routes);
 
-  return function(context) {
+  return function (context) {
     let req = context.request;
     let path = req.hash.substr(1);
     if (!current) {
@@ -19,6 +19,6 @@ export function router(options) {
   };
 }
 
-router.redirect = function(hash) {
+router.redirect = function (hash) {
   location.href = location.origin + location.pathname + '#' + hash;
 };

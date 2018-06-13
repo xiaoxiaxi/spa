@@ -1,11 +1,9 @@
-import Filter from '../filter/filter';
-
 let filters = [];
 
 export let filter = {
-  add: function(ft) {
+  add: function (ft) {
     if (ft instanceof Array) {
-      ft.forEach(function(it) {
+      ft.forEach(function (it) {
         this.add(it);
       }.bind(this));
     } else {
@@ -13,12 +11,12 @@ export let filter = {
     }
   },
   //单页中间件
-  mw: function(context, next) {
+  mw: function (context, next) {
     let index = 0;
-    let chain = function() {
+    let chain = function () {
       let filter = filters[index++];
       if (filter) {
-        let ft = new Filter(context, next, chain);
+        let ft = new filter(context, next, chain);
         ft.doFilter();
       } else {
         next();

@@ -31,7 +31,6 @@ export function rest(options) {
   //获取参数 返回{ key:value }
   //path: '/xxx/xxx'
   function getParams(path) {
-    // console.log('params:', path);
     let ret = {};
     /*matchers [{
         url: '/user/:id', 
@@ -39,9 +38,7 @@ export function rest(options) {
         matcher: /^\/user\/([^\/]+?)$/i
     }]*/
     matchers.forEach(function (it) {
-      // console.log('it.matcher.lastIndex:', it.matcher.lastIndex);
       let result = it.matcher.exec(path);
-      // console.log('result: ', result);
       if (result) {
         it.keys.forEach((key, index) => {
           ret[key] = decodeURIComponent(result[index + 1]) || '';
@@ -49,7 +46,6 @@ export function rest(options) {
         return;
       }
     });
-    // console.log(ret);
     return ret;
   }
   return function (context, next) {

@@ -1,10 +1,10 @@
-import $ from '../../vendor/jquery';
+const $ = require('../../vendor/jquery');
 
 export let UMI = {
-  baseUrl: '../../static/modules/',
+  baseUrl: 'modules/',
   fileType: 'html',
   children: {},
-  status: 'shown', //'built', 'shown', 'unloaded'
+  status: 'shown', //'built', 'shown', 'unloaded', 'unknown'
   /*
     将路由表解析为UMI树
   */
@@ -38,6 +38,7 @@ export let UMI = {
     某块构建方法
   */
   build(path) {
+    console.log('build');
     if (typeof path !== 'string') {
       return;
     }
@@ -45,6 +46,7 @@ export let UMI = {
     if (node.status !== 'unloaded' || !node.component) {
       return;
     }
+    console.log(this.baseUrl + node.component + '.' + this.fileType);
     //加载文件
     $.ajax({
       url: this.baseUrl + node.component + '.' + this.fileType,
@@ -61,8 +63,13 @@ export let UMI = {
         }
         //状态管理
         node.status = 'built';
+      },
+      error: function (err) {
+        console.log(err);
+        node.status = 'unknown';
       }
     });
+    console.log('build');
   },
   /*
     模块显示方法
@@ -73,10 +80,12 @@ export let UMI = {
     }
     let node = this.findNode(path);
     let parent = this.findParent(path);
+    console.log(node, parent);
     switch (node.status) {
     case 'shown':
       this.refresh(path);
       if (parent) {
+        console.log('show parent');
         this.show(this.parentPath(path));
       }
       break;
