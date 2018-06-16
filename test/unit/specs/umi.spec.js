@@ -1,5 +1,4 @@
 import { UMI } from '@/umi/umi';
-
 describe('UMI test', () => {
   describe('UMI parse & findNode & findParent', () => {
     it('{/:a}', (done) => {

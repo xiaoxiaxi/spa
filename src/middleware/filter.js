@@ -19,9 +19,9 @@ export let filter = {
       if (filter) {
         let ft = new filter(context, next, chain);
         ft.doFilter();
-      } else {
-        next();
       }
+      next();
     };
+    chain();
   }
 };

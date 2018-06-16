@@ -23,7 +23,7 @@ export function rest(options) {
   //获取参数 返回{ key:value }
   function getParams(path) {
     let ret = {};
-    matchers.forEach(function (it) {
+    matchers.find(function (it) {
       let result = it.matcher.exec(path);
       if (result) {
         it.keys.forEach((key, index) => {

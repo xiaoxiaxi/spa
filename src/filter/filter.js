@@ -14,7 +14,7 @@ export class Filter {
       return this._next();
     }
   }
-  diFilter() {
+  doFilter() {
     //Overwrite by subclasses
     return true;
   }

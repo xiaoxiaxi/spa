@@ -1,13 +1,13 @@
 let mws = [];
 
 export let spa = {
-  add: function (mw) {
+  add(mw) {
     if (typeof mw === 'function') {
       mws.push(mw);
     }
     return true;
   },
-  dispatch: function (context) {
+  dispatch(context) {
     let index = 0;
     let next = function () {
       let mw = mws[index++];
@@ -16,5 +16,6 @@ export let spa = {
       }
     };
     next();
+    return true;
   }
 };

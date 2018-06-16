@@ -9,18 +9,21 @@ describe('filter test', function () {
     let fil = new Filter(context, next, chain);
     expect(fil.chain()).to.equal(1);
     expect(fil.next()).to.equal(2);
-    expect(fil.diFilter()).to.equal(true);
+    expect(fil.doFilter()).to.equal(true);
+    fil = null;
     done();
   });
+
   it('should be ok to init AuthFilter', function (done) {
     let chain = function () { return 'chain'; };
     let next = function () { return 'next'; };
-    let context = { request: new URL('https://netease.com/#/user/') };
+    let context = { request: new URL('https://netease.com/#/user/1234') };
     let auth = new AuthFilter(context, next, chain);
     expect(auth.chain()).to.equal('chain');
     expect(auth.next()).to.equal('next');
     expect(auth._context).to.equal(context);
-    auth.diFilter();
+    auth.doFilter();
+    auth = null;
     done();
   });
 });

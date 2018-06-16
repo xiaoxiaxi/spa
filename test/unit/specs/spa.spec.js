@@ -4,10 +4,9 @@ import { rest } from '@/middleware/rest';
 import { filter } from '@/middleware/filter';
 import { router } from '@/middleware/router';
 import { AuthFilter } from '@/filter/auth';
-import { Filter } from '@/filter/filter';
 
 describe('spa test', () => {
-  describe('spa add', () => {
+  describe('spa add method', () => {
     it('should be ok to add middleware', (done) => {
       let options = {
         matchers: [
@@ -17,7 +16,7 @@ describe('spa test', () => {
           matcher: /\/user\/.+/i,
           target: '/user/'
         }, {
-          matcher: '/404/',
+          matcher: '/405/',
           target: '/welcome/'
         }, {
           matcher: function () { return false; },
@@ -39,14 +38,20 @@ describe('spa test', () => {
       spa.add(rest(options));
       spa.add(rewrite(options));
       spa.add(filter.mw);
+      expect(filter.add([AuthFilter]).length).to.equal(1);
       expect(filter.add(AuthFilter).length).to.equal(2);
-      expect(filter.add([Filter]).length).to.equal(3);
       spa.add(router(options));
       done();
     });
+  });
+
+  describe('spa add method', () => {
     it('should be ok to dispatch', (done) => {
-      let context = { request: new URL(location.href) };
-      spa.dispatch(context);
+      let context = { request: new URL(location.origin + '#/user/123') };
+      expect(spa.dispatch(context)).to.equal(true);
+      context = { request: new URL(location.origin + '#/404/') };
+      expect(spa.dispatch(context)).to.equal(true);
+      location.pathname = '/index.html';
       done();
     });
   });

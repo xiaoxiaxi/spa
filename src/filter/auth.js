@@ -9,7 +9,7 @@ export class AuthFilter extends Filter {
     //获取用户
     let user = req.restParams ? req.restParams.id : '';
     //如果是要去一个模块并且该模块是 / user /
-    if (hash && hash === '/user/') {
+    if (hash && hash === '#/user/') {
       //假设这个获取服务器session的方法↓
       let getSession = (url, id) => {
         let result = {};

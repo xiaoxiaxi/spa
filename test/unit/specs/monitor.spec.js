@@ -12,13 +12,13 @@ describe('monitor test', function () {
       expect(mon.runURLCheck()).to.equal(true);
       expect(mon.start()).to.equal(true);
       expect(mon.stop()).to.equal(true);
+      mon = null;
       done();
     });
     it('should not be ok to start monitor', function (done) {
-      let monitor = new Monitor({
-        onchange:''
-      });
+      let monitor = new Monitor({ onchange:'' });
       expect(monitor.runURLCheck()).to.equal(false);
+      monitor = null;
       done();
     });
   });

@@ -5,9 +5,10 @@ export function router(options) {
   let current = null;
   UMI.parse(routes);
 
-  return function (context) {
+  return function (context, next) {
     let req = context.request;
     let path = req.hash.substr(1);
+    console.log(current);
     if (!current) {
       current = path;
       UMI.show(path);
@@ -16,9 +17,10 @@ export function router(options) {
       UMI.jump(current, path);
       current = path;
     }
+    next();
   };
 }
 
 router.redirect = function (hash) {
-  location.href = location.origin + location.pathname + '#' + hash;
+  location.hash = '#' + hash;
 };
